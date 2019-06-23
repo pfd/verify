@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# reset gh-pages branch to scratch and force push
+git checkout gh-pages
+git reset --hard 2e23ac9
+git push --force
+
+# move site to temp
+mv ~/Desktop/_site/ /tmp/
+rm -rf *
+mv /tmp/_site .
+
+# move all content from _site out
+mv _site/* .
+rm -rf _site
+
+# commit changes
+
+git add -A
+git commit -m "publishing the preview site"
+git push --force
